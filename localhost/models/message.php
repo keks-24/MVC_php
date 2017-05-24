@@ -33,7 +33,7 @@ class Message extends Model {
 
 	}
 
-	public function getList(){
+	public function getList_a(){
 		$sql = "select * from messages where 1";
 		return $this->db->query($sql);
 	}

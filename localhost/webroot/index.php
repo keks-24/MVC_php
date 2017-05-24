@@ -23,6 +23,7 @@ require_once(ROOT.DS.'lib'.DS.'init.php');
 //----------------------------------------------------------------------------------------------------------------------
 
 //Session::setFlash('Test flash message');
+session_start();
 
 App::run($_SERVER['REQUEST_URI']);
 

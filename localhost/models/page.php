@@ -6,11 +6,11 @@
 class Page extends Model
 {
 	
-	public function getList_a($only_published = false){
+	public function getList_a(){
 		$sql = "select * from pages where 1";
-		if ( $only_published ) {
-			$sql .= " and is_published = 1";
-		}
+		//if ( $only_published ) {
+		//	$sql .= " and is_published = 1";
+		//}
 		return $this->db->query($sql);		
 	}
 

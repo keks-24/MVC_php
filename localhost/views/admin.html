@@ -12,16 +12,19 @@
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+      <div class="container">       
         <div class="navbar-header">
           <a class="navbar-brand" href="/"><?=Config::get('site_name')?> - <?= __('lng.admin','Admin Section')?></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+         <? if (Session::get('login') ) { ?>
           <ul class="nav navbar-nav">
             <li <?php if(App::getRouter()->getController() == 'pages' ) {?>class="active"<?php } ?>><a href="/admin/pages/">Pages</a></li>
             <li <?php if(App::getRouter()->getController() == 'contacts' ) {?>class="active"<?php } ?>><a href="/admin/contacts/">Contact Us</a></li>
             <!-- <li><a <?php if(App::getRouter()->getController() == 'test' ) {?>class="active"<?php } ?> href="/admin/test/">Test</a></li>
           </ul> -->
+            <li><a href="/admin/users/logout">Logout</a></li>
+          <?php } ?>
         </div>
       </div>
     </nav>

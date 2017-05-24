@@ -22,6 +22,14 @@ class App{
 
 		$controller_class = ucfirst(self::$router->getController()).'Controller';
 		$controller_method = strtolower(self::$router->getMethodPrefix().self::$router->getAction());
+//проверка логина при входе админа
+		
+		$layout = self::$router->getRoute();
+		if ( $layout == 'admin' && Session::get('role') !='admin' ){
+			if ( $controller_method !='admin_login' ){
+				Router::redirect('/admin/users/login');
+			}
+		}
 
 		//calling controller`s method
 		$controller_object = new $controller_class();
@@ -34,7 +42,7 @@ class App{
 			throw new Exception('Method '.$controller_method.' of class '.$controller_class.'does not exist.');
 		}
 		//выполнение рендеринга контента выводимого в дефолт хтмл
-		$layout = self::$router->getRoute();
+		//$layout = self::$router->getRoute();
 		$layout_path = VIEWS_PATH.DS.$layout.'.html';
 		$layout_view_object = new View(compact('content'), $layout_path);
 		echo $layout_view_object->render();
