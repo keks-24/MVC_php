@@ -31,6 +31,13 @@ class App{
 			}
 		}
 
+		$layout = self::$router->getRoute();
+		if ( $layout == 'default' && Session::get('role') !='customer' ){
+			if ( $controller_method !='admin_login' ){
+				Router::redirect('/admin/users/login');
+			}
+		}
+
 		//calling controller`s method
 		$controller_object = new $controller_class();
 		if ( method_exists($controller_object, $controller_method) ){

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+   #map {
+    height: 500px;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+  <h3>My Demo</h3>
+  <div id="map"></div>
+  <script>
+    function initMap() {
+      var uluru = {lat: 46.44, lng: 30.73};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 6,
+        center: uluru
+      });
+
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+      });
+
+      var directionsDisplay = new google.maps.DirectionsRenderer();
+      var directionsService = new google.maps.DirectionsService();
+      directionsDisplay.setMap(map);
+      directionsDisplay.setOptions( { suppressMarkers: true, suppressInfoWindows: true } );
+
+      var start_point = new google.maps.LatLng(46.44, 30.73);
+      var end_point = new google.maps.LatLng(50.46, 30.53);
+      
+      var marker = new google.maps.Marker({
+        position: start_point,
+        map: map
+      });
+      
+      var marker = new google.maps.Marker({
+        position: end_point,
+        map: map
+      });   
+
+      google.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, this);
+      }); 
+
+
+
+var request = {
+       origin: start_point,
+       destination: end_point,
+       travelMode: google.maps.TravelMode.DRIVING,
+       unitSystem: google.maps.UnitSystem.METRIC,
+       provideRouteAlternatives: true,
+       avoidHighways: false,
+       avoidTolls: true
+      };
+      directionsService.route(request, function(result, status) {
+       if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(result);
+        var routes = result.routes;
+        var leg = routes[0].legs;
+        var lenght = leg[0].distance.text;
+        var duration = leg[0].duration.text;
+        infowindow = new google.maps.InfoWindow({ content: 'Дистанция: '+lenght+'<br>Продолжительность: '+duration });
+        infowindow.open(map, marker);
+       }
+      });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+ </script>
+ <script async defer
+ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABjlIfav7S0qETfkBEekGpjNahFX63NEg&callback=initMap">
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?php
+$input=array(array("city_1"=>'A',"city_2"=>'B',"distance_km"=>80,"time_mins"=>40),
+	         array("city_1"=>'A',"city_2"=>'C',"distance_km"=>110,"time_mins"=>55),
+	         array("city_1"=>'A',"city_2"=>'E',"distance_km"=>330,"time_mins"=>240),
+	         array("city_1"=>'B',"city_2"=>'F',"distance_km"=>340,"time_mins"=>230),
+	         array("city_1"=>'C',"city_2"=>'D',"distance_km"=>60,"time_mins"=>20),
+	         array("city_1"=>'C',"city_2"=>'E',"distance_km"=>205,"time_mins"=>80),
+			 array("city_1"=>'D',"city_2"=>'F',"distance_km"=>192,"time_mins"=>110),
+			 array("city_1"=>'E',"city_2"=>'F',"distance_km"=>80,"time_mins"=>40));
+
+$dist=array();
+foreach($input as $node)
+{ // Строим массив дистанций для быстрого поиска [A][B]=80; [B][A]=80;
+ $dist[$node['city_1']][$node['city_2']]=$node['distance_km'];
+ $dist[$node['city_2']][$node['city_1']]=$node['distance_km'];
+}
+$result=Deykstra($dist,'A');
+print "Route from A to F ".$result['F']['route']." distance = ".$result['F']['metric']." \n";
+
+function Deykstra($dist,$from)
+{
+ $M=array(array("vert"=>$from, "metric"=>0, "route"=>$from)); // Массив вершин с стартовой вершиной
+ $S=array($from=>0); // Массив номеров элементов в массиве вершин по кодам городов
+ for($i=0;$i<count($M);$i++) // Перебираем все вершины
+  {
+   // Данные проверяемой вершины Код, Маршрут, Метрика
+   $v1=$M[$i]['vert']; $route=$M[$i]['route']; $metric=$M[$i]['metric'];
+   foreach($dist[$M[$i]['vert']] as $v2=>$m2)
+    { // Перебираем все вершины до которых можно добраться напрямую
+     if(!array_key_exists($v2,$S)) // Вершина назначения еще не встречалась
+      {
+       $S[$v2]=count($M); // Добавляем индекс по коду
+       $M[]=array("vert"=>$v2, "metric"=>($metric+$m2), "route"=>"$route/$v2"); // И саму вершину
+      } else
+      { // Вершина уже встречалась, пересчитываем метрику, если необходимо
+       $ind=$S[$v2];
+       if($M[$ind]['metric']>($metric+$m2)) // Метрика вершины больше текущей
+        { // обновляем метрику и маршрут до вершины
+         $M[$ind]['metric']=$metric+$m2;
+         $M[$ind]['route']="$route/$v2";
+        }
+      }
+    }
+  }
+ // Из массива по номерам, делаем по именам городов
+ foreach($S as $key=>$ind) $S[$key]=$M[$ind];
+ return $S;
+}
+?>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+
+</head>
+<body>
+
+</body>
+</html>

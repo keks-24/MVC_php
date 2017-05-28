@@ -14,14 +14,21 @@ class UsersController extends Controller{
 			if ( $user && $user["is_active"] && $hash == $user["password"] ){
 				Session::set('login', $user['login']);
 				Session::set('role', $user['role']);
+
+				if ($user['role'] == 'admin') {
+					Router::redirect('/admin/');
+				} elseif ($user['role'] == 'customer') {
+					Router::redirect('/pages/');
+				}			
+				
 			}
-			Router::redirect('/admin/');
 		}
 	}
 
-	public function admin_logout(){
-		Session::destroy();
-		Router::redirect('/admin/');
-	}
+		public function admin_logout(){
+			Session::destroy();		
+			Router::redirect('/admin/');	
+			
+		}
 
-}
+	}
