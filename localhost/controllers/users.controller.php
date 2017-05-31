@@ -30,5 +30,4 @@ class UsersController extends Controller{
 			Router::redirect('/admin/');	
 			
 		}
-
 	}
