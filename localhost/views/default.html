@@ -6,44 +6,70 @@
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    
+
 
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/"><?=Config::get('site_name')?></a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-        <? if (Session::get('login') ) { ?>
-          <ul class="nav navbar-nav">
-            <li <?php if(App::getRouter()->getController() == 'pages' ) {?>class="active"<?php } ?>><a  href="/pages/">Страницы</a></li>
-            <li><a <?php if(App::getRouter()->getController() == 'contacts' ) {?>class="active"<?php } ?> href="/contacts/">Связаться с нами</a></li>
-            <li><a <?php if(App::getRouter()->getController() == 'task' ) {?>class="active"<?php } ?> href="/task/"> Задача</a></li>
-            <li><a <?php if(App::getRouter()->getController() == 'map' ) {?>class="active"<?php } ?> href="/map/"> Карта</a></li>
-            <li><a <?php if(App::getRouter()->getController() == 'sell' ) {?>class="active"<?php } ?> href="/sell/"> Поставщик</a></li>      
-          <li style=" margin-right: 100px; margin-left: 200px; "><a href="/admin/users/logout">Logout</a></li>
-          <?php } ?>
-        </div>
-      </div>
-    </nav>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 
-    <div class="container">
+				<a class="navbar-brand" href="/"><?=Config::get('site_name')?></a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				
+				<ul class="nav navbar-nav">
+				<? if (Session::get('login') ) { ?>
+					<li <?php if(App::getRouter()->getController() == 'pages' ) {?>class="active"<?php } ?>><a  href="/pages/">Страницы</a></li>
+					<li><a <?php if(App::getRouter()->getController() == 'cust' ) {?>class="active"<?php } ?> href="/cust/"> Предложения</a></li>
+					<li><a <?php if(App::getRouter()->getController() == 'sell' ) {?>class="active"<?php } ?> href="/sell/"> Перевозчику</a></li> 
+					<li><a <?php if(App::getRouter()->getController() == 'map' ) {?>class="active"<?php } ?> href="/map/"> Карта</a></li>
+					<li><a <?php if(App::getRouter()->getController() == 'task' ) {?>class="active"<?php } ?> href="/task/"> Задача?</a></li>
+					<li><a <?php if(App::getRouter()->getController() == 'contacts' ) {?>class="active"<?php } ?> href="/contacts/">Связаться с нами</a></li>
+					<li><a style="color: red" href="/admin/users/logout">Logout</a></li>
+					<?php } ?>
+					<?php if( !Session::get('login') ) { ?>
+					<li style="margin: -8px !important;"><a href="/admin/"><button class="btn btn-sm btn-success"  >Войти</button></a></li>
 
-      <div class="starter-template">
-        <?php if(Session::hasFlash() )  { ?>
-        <div class="alert alert-info" role="alert">
-          <?php Session::flash(); ?>
-        </div>
-        <?php } ?>
+					<li style="margin: -8px !important;"><a <?php if(App::getRouter()->getController() == 'registrator' ) {?>class="active"<?php } ?> href="/registrator/"><button class="btn btn-sm btn-warning"  >Зарегистироваться</button></a></li>
+					<?php } ?>
+				</ul>
+				
+			</div>
+		</div>
+	</nav>
 
-        <?=$data['content']?>
-      </div>
+	<div class="container">
 
-    </div>
-</body>
-</html>
+
+		<div class="starter-template">
+			<?php if( !Session::get('login') ) { ?>
+				<div class="jumbotron">			
+				<h2> Добро пожаловать на сайт!</h2>
+				<p> Что бы увидеть содержимое сайта необходимо пройти регистрацию!</p>
+			
+			</div>
+			<?php } ?>
+
+			<?php if(Session::hasFlash() )  { ?>
+				<div class="alert alert-info" role="alert">
+					<?php Session::flash(); ?>
+				</div>
+				<?php } ?>
+
+				<?=$data['content']?>
+			</div>
+
+		</div>
+	</body>
+	</html>

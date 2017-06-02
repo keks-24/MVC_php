@@ -31,12 +31,12 @@ class App{
 			}
 		}
 
-		$layout = self::$router->getRoute();
-		if ( $layout == 'default' && Session::get('role') !='customer' ){
+		/*$layout = self::$router->getRoute();
+		if ( $layout == 'default' && Session::get('role') !='customer' && Session::get('role') !='seller'){
 			if ( $controller_method !='admin_login' ){
 				Router::redirect('/admin/users/login');
 			}
-		}
+		}*/
 
 		//calling controller`s method
 		$controller_object = new $controller_class();

@@ -1,6 +1,6 @@
 <?php
 //основной конфигурационный файл приложения
-Config::set('site_name', 'Carrier.shum.ua =)');
+Config::set('site_name', 'shum.ua');
 
 Config::set('languages', array ('en','ua'));
 

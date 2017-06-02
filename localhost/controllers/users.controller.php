@@ -18,12 +18,15 @@ class UsersController extends Controller{
 				if ($user['role'] == 'admin') {
 					Router::redirect('/admin/');
 				} elseif ($user['role'] == 'customer') {
-					Router::redirect('/pages/');
-				}			
-				
+					Router::redirect('/cust/');
+				} elseif ($user['role'] == 'seller') {
+					Router::redirect('/sell/');
+					}				
 			}
 		}
 	}
+
+
 
 		public function admin_logout(){
 			Session::destroy();		
