@@ -6,6 +6,11 @@ CLass Customer extends Model{
 		$sql = "select * from seller_info where 1";
 		return $this->db->query($sql);
 	}
-
+	
+	public function get_id(){
+		$id = $_GET['id'];
+		$sql = "select * from seller_info where id='{$id}' ";
+		return $this->db->query($sql);
+	}
 
 }

@@ -1,19 +1,30 @@
+<style type="text/css">
+  .col-sm-4{
+    width: 33.333333333% !important;
+    float: left !important;
+  }
+
+  .cf:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+</style>
 <h3>Info offer</h3><br/>
-        <div class="col-sm-4">
-          <ul  class="list-group">
-          <?php foreach($data as $item) { ?>
-            <li class="list-group-item active"></li>
-            <li class="list-group-item"><b>Offer № :</b> <?=$item['id']?></li>
+        <?php foreach($data as $item) { ?>
+        <div class="col-sm-4 , cf">         
+          <ul  class="list-group">         
+            <li class="list-group-item active"> <b>Offer № :</b> <?=$item['id']?> <a href="/map?id=<?=$item['id']?>/"><button style="margin-top: -3px;  height: 27px !important;
+            float: right;" class="btn btn-sm btn-success"  >На карту</button></a></li>
             <li class="list-group-item">Name company : <?=$item['name_company']?></li>
             <li class="list-group-item">Place car : <?=$item['place_car']?></li>
             <li class="list-group-item">Contact Email : <?=$item['cont_email']?></li>
             <li class="list-group-item">Contact phone : <?=$item['cont_phone']?></li>
             <li class="list-group-item">Start point : <?=$item['start_p']?></li>
-            <li class="list-group-item">Finish point : <?=$item['finish_p']?></li>
-            <LI style='color:white; '></LI>
-          <?php } ?> 
-          </ul>
+            <li class="list-group-item">Finish point : <?=$item['finish_p']?></li>          
+          </ul>          
         </div>
+        <?php } ?> 
 
 
 
