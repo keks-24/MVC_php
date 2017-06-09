@@ -35,10 +35,8 @@
 					<? if (Session::get('role') == 'seller' ) { ?>
 					<li><a <?php if(App::getRouter()->getController() == 'sell' ) {?>class="active"<?php } ?> href="/sell/"> Перевозчику</a></li> 
 					<?php } ?>
-					<!--li><a <?php if(App::getRouter()->getController() == 'map' ) {?>class="active"<?php } ?> href="/map/"> Карта</a></li-->
-					<li><a <?php if(App::getRouter()->getController() == 'task' ) {?>class="active"<?php } ?> href="/task/"> Задача?</a></li>
 					<li><a <?php if(App::getRouter()->getController() == 'contacts' ) {?>class="active"<?php } ?> href="/contacts/">Связаться с нами</a></li>
-					<li><a style="color: red" href="/admin/users/logout"><button style="margin: -6px !important;" class="btn btn-sm btn-danger"> Logout</button></a></li>
+					<li><a style="color: red" href="/admin/users/logout"><button style="margin: -6px !important;" class="btn btn-sm btn-danger">Выйти</button></a></li>
 					<?php } ?>
 					<?php if( !Session::get('login') ) { ?>
 					<li style="margin: -8px !important;"><a href="/admin/"><button class="btn btn-sm btn-success"  >Войти</button></a></li>
@@ -66,6 +64,7 @@
 			<?php if(Session::hasFlash() )  { ?>
 				<div class="alert alert-info" role="alert">
 					<?php Session::flash(); ?>
+					
 				</div>
 				<?php } ?>
 

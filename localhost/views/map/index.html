@@ -87,20 +87,20 @@
     </style>
   </head>
   <body>
-    <h2>Calculate your route</h2>
+    <h2>Просмотр выбранного маршрута</h2>
     <form id="calculate-route" name="calculate-route" action="#" method="get">
 <?php foreach ($data as $item)  { ?>
       <label for="from">From:</label>
-      <input type="text" id="from" name="from" required="required" placeholder="An address" size="30" value="<?=$item['start_p']?>" />
+      <input type="text" id="from" name="from" required="required" placeholder="An address" size="30" value="<?=$item['start_city'].', '.$item['start_adress']?>" />
       <a id="from-link" href="">Get my position</a>
       <br />
 
       <label style="margin-right: 21px;" for="to">To:</label>
-      <input type="text" id="to" name="to" required="required" placeholder="Another address" size="30" value="<?=$item['finish_p']?>" />
+      <input type="text" id="to" name="to" required="required" placeholder="Another address" size="30" value="<?=$item['finish_city'].', '.$item['finish_adress']?>" />
       <a id="to-link" href="#">Get my position</a>
       <br />
 <?php  }?>
-      <input style="margin-left: 44px;" type="submit" />
+      <input style="margin-left: 44px;" type="submit" value="Проложить маршрут" />
       <input type="reset" />
     </form>
     <div id="map"></div>

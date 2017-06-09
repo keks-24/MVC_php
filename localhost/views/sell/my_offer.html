@@ -32,10 +32,10 @@
      <a href="/map?id=<?=$item['id']?>/"><button style="margin-top: -3px; margin-left: 5px;  height: 27px !important;
       float: right;" class="btn btn-sm btn-success"  >На карту</button></a>
       
-      <? if (Session::get('role') == 'admin' ) { ?>
-      <a href="/cust/delete/<?=$item['id']?>" onclick="return confirmDelete();"><button style="margin-top: -3px;  height: 27px !important;
-        float: right;" class="btn btn-sm btn-warning">Удалить</button></a>
-        <?php }  ?>
+      
+      <a href="/sell/edit?id=<?=$item['id']?>"><button style="margin-top: -3px;  height: 27px !important;
+        float: right;" class="btn btn-sm btn-warning">Изменить</button></a>
+
       </li>
       <li class="list-group-item" ><img src="<?=$item['full_path']?>" onerror="this.src='/webroot/uploads/t1.jpg'" /></li>
       <li class="list-group-item"><b>Наименование компании :</b> <?=$item['name_company']?></li>
@@ -50,42 +50,3 @@
           </ul>          
         </div>
         <?php } ?> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<h3>Info offer</h3><br/>
-<table class="table table-striped" style="width: 100%;">
-  <tr>
-    <td style="width: 5%;">#</td>
-    <td style="width: 15%;">Name company</td>
-    <td style="width: 15%;">Place car</td>
-    <td style="width: 20%;">Contact Email</td>
-    <td style="width: 20%;">Contact Phone</td>
-    <td style="width: 15%;">Start point</td>
-    <td style="width: 15%;">Finish point</td>
-  </tr>
-  <?php foreach($data as $item) { ?>
-  <tr>
-    <td><?=$item['id']?></td>
-    <td><?=$item['name_company']?></td>
-    <td><?=$item['place_car']?></td>
-    <td><?=$item['cont_email']?></td>
-    <td><?=$item['cont_phone']?></td>
-    <td><?=$item['start_p']?></td>
-    <td><?=$item['finish_p']?></td>
-  </tr>
-  <?php } ?>  
-</table> -->

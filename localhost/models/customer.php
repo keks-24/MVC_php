@@ -13,4 +13,12 @@ CLass Customer extends Model{
 		return $this->db->query($sql);
 	}
 
+
+
+	public function delete($id){
+		$id = (int)$id;
+		$sql= "delete from seller_info where id = '{$id}' ";
+		return $this->db->query($sql);
+	}
+
 }

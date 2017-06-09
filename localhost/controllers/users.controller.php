@@ -14,6 +14,7 @@ class UsersController extends Controller{
 			if ( $user && $user["is_active"] && $hash == $user["password"] ){
 				Session::set('login', $user['login']);
 				Session::set('role', $user['role']);
+				Session::set('id', $user['id']);
 
 				if ($user['role'] == 'admin') {
 					Router::redirect('/admin/');

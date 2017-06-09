@@ -10,7 +10,7 @@ class RegistratorController extends Controller{
 	public function index(){
 		if ($_POST) {
 			if( $this->model->save($_POST) ){
-				Session::setFlash('You was registred successfully!');
+				Session::setFlash('You were registred successfully!');
 			}
 		}
 	}

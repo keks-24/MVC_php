@@ -13,5 +13,4 @@ class MapController extends Controller
 	public function index(){
 		$this->data = $this->model->get_id();
 	}
-
 }
